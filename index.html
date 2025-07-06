@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bringing Healthcare to Africa</title>
+  <meta name="description" content="EMR platform: Bringing healthcare to Africa. Book appointments, access prescriptions, and more." />
+  <link rel="icon" href="img/favicon.ico" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#e5fff6" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Erica+One&family=Lexend+Deca:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Saira:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  
+  <!-- Mobile Header -->
+  <header class="header-container mobile-header" aria-label="Site header">
+     <!-- Sticky logo for mobile -->
+
+    <div class="header-bg">
+        <!-- <div class="sticky-mobile-logo">
+  <img src="img/logo.png" alt="Healthcare Africa Logo" class="mobile-logo-img" />
+</div> -->
+ <img src="img/logo.png" alt="Healthcare Africa Logo" class="logo" />
+        <span class="mobile-section-title" id="mobileSectionTitle">Home</span>
+     
+      <button class="hamburger" id="menuToggle" aria-label="Open navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <nav class="offcanvas" id="offcanvasNav" aria-label="Mobile Navigation">
+      <button class="close" id="closeNav" aria-label="Close navigation">&times;</button>
+      <ul>
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About us</a></li>
+        <li><a href="#how" class="nav-link">How we work</a></li>
+        <li><a href="#where" class="nav-link">Where we work</a></li>
+        <li><a href="#partners" class="nav-link">Our partners</a></li>
+        <li><a href="#partnership" class="nav-link">Partnership/M&A</a></li>
+      </ul>
+    </nav>
+    <div class="offcanvas-backdrop" id="navBackdrop" tabindex="-1" aria-hidden="true"></div>
+  </header>
+
+  <!-- Desktop Header -->
+  <header class="header-container desktop-header lexend-deca" aria-label="Site header">
+    <div class="header-bg-desktop">
+      <img src="img/logo.png" alt="Healthcare Africa Logo" class="logo" />
+      <nav aria-label="Main Navigation">
+        <ul>
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About us</a></li>
+          <li><a href="#how" class="nav-link">How we work</a></li>
+          <li><a href="#where" class="nav-link">Where we work</a></li>
+          <li><a href="#partners" class="nav-link">Our partners</a></li>
+          <li><a href="#partnership" class="nav-link">Partnership/M&A</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="home">
+    <section class="carousel-section" aria-label="Hero Banner Carousel">
+      <div class="carousel-card">
+        <div class="slider-container" id="sliderContainer">
+          <img src="img/banner1.jpg" alt="Healthcare Banner 1" class="carousel-img" id="carouselImg" />
+          <div class="img-overlay" id="carouselOverlay"></div>
+          <button class="carousel-arrow left" id="arrowLeft" aria-label="Previous Slide">&#8592;</button>
+          <button class="carousel-arrow right" id="arrowRight" aria-label="Next Slide">&#8594;</button>
+          <div class="carousel-overlay">
+            <h1 class="anton-regular">Bringing Healthcare to Africa</h1>
+            <div class="info-chip">
+              <span class="info-icon" aria-hidden="true">i</span>
+              <span>Improvement modern tech no technology</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-dots-bg" id="dotsBg">
+        <div class="carousel-dots" id="carouselDots"></div>
+      </div>
+    </section>
+    <!-- Add section anchors for scroll spy demo -->
+    <section id="about" class="page-section" tabindex="-1" aria-label="About us">
+        <section class="about-section" >
+  <div class="about-container">
+    <div class="about-image-group">
+      <div class="about-img-main">
+        <img src="img/banner3.jpg" alt="Team member at desk" />
+      </div>
+      <div class="about-img-small">
+        <img src="img/banner3.jpg" alt="Team member at desk" />
+      </div>
+    </div>
+    <div class="about-content">
+      <h2>
+        About <span class="about-green">US</span>
+      </h2>
+      <p>
+        Pharmerci contributes to improve healthcare across Africa by sourcing, in-licensing, manufacturing, representing, and distributing high-quality products and information across the continent. Pharmerci distributes products on the continent through its sister company Nouvel.
+      </p>
+     
+      <a class="about-btn" href="#">Learn More</a>
+    </div>
+  </div>
+</section>
+
+    </section>
+    <section class="page-section" tabindex="-1" aria-label="How we work">
+        <section class="how-section" id="how">
+  <div class="how-container">
+    <h2 class="how-title">How we work</h2>
+    <div class="how-group">
+      <h3 class="how-subtitle">DISTRIBUTION</h3>
+      <p>
+        Pharmerci contributes to improve healthcare across Africa by sourcing, in-licensing, manufacturing, representing, and distributing high-quality products and information across the continent. Pharmerci distributes products on the continent through its sister company Nouvel.
+      </p>
+    </div>
+    <div class="how-group">
+      <h3 class="how-subtitle">IN-LICENCING AND REPRESENTATION</h3>
+      <p>
+        Pharmerci contributes to improve healthcare across Africa by sourcing, in-licensing, manufacturing, representing, and distributing high-quality products and information across the continent. Pharmerci distributes products on the continent through its sister company Nouvel.
+      </p>
+    </div>
+    <a class="how-btn" href="#">See All</a>
+  </div>
+</section>
+
+    </section>
+    <section id="where" class="page-section" tabindex="-1" aria-label="Where we work"></section>
+    <section id="partners" class="page-section" tabindex="-1" aria-label="Our partners"></section>
+    <section id="partnership" class="page-section" tabindex="-1" aria-label="Partnership/M&A"></section>
+  </main>
+  <script src="script.js"></script>
+  <script>
+    // Service worker registration (PWA support)
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('sw.js');
+      });
+    }
+  </script>
+</body>
+</html>
