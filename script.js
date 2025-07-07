@@ -31,25 +31,36 @@ function buildDots() {
     dot.type = "button";
     dot.setAttribute("aria-label", `Go to slide ${idx + 1}`);
     dot.setAttribute("tabindex", "0");
-    dot.onclick = () => showSlide(idx);
+    dot.onclick = () => showSlide(idx, idx > currentSlide ? "right" : "left");
     dot.onkeydown = e => {
-      if (e.key === "Enter" || e.key === " ") showSlide(idx);
+      if (e.key === "Enter" || e.key === " ") showSlide(idx, idx > currentSlide ? "right" : "left");
     };
     carouselDots.appendChild(dot);
   });
 }
 
 /**
- * Show slide at given index with smooth transition
+ * Show slide at given index with SLIDE transition
  * @param {number} idx
+ * @param {string} [direction] - "left" or "right"
  */
-function showSlide(idx) {
+function showSlide(idx, direction) {
   if (idx < 0) idx = slides.length - 1;
   if (idx >= slides.length) idx = 0;
 
-  // Fade out
-  carouselImg.classList.add("fade-out");
-  carouselOverlay.classList.add("fade-out");
+  // Remove previous slide classes
+  carouselImg.classList.remove("slide-in", "slide-out-left", "slide-in-right", "slide-in-left", "slide-out-right");
+  carouselOverlay.classList.remove("slide-in", "slide-out-left", "slide-in-right", "slide-in-left", "slide-out-right");
+
+  // Decide direction (default = right)
+  let slideDir = direction;
+  if (!slideDir) {
+    slideDir = (idx > currentSlide || (currentSlide === slides.length - 1 && idx === 0)) ? "right" : "left";
+  }
+
+  // Slide out old image
+  carouselImg.classList.add(slideDir === "right" ? "slide-out-left" : "slide-out-right");
+  carouselOverlay.classList.add(slideDir === "right" ? "slide-out-left" : "slide-out-right");
 
   setTimeout(() => {
     currentSlide = idx;
@@ -57,22 +68,31 @@ function showSlide(idx) {
     carouselImg.alt = slides[currentSlide].alt;
     buildDots();
 
-    // Fade in
-    carouselImg.classList.remove("fade-out");
-    carouselImg.classList.add("fade-in");
-    carouselOverlay.classList.remove("fade-out");
-    carouselOverlay.classList.add("fade-in");
+    // Slide in new image
+    carouselImg.classList.remove("slide-out-left", "slide-out-right");
+    carouselOverlay.classList.remove("slide-out-left", "slide-out-right");
+    carouselImg.classList.add(slideDir === "right" ? "slide-in-right" : "slide-in-left");
+    carouselOverlay.classList.add(slideDir === "right" ? "slide-in-right" : "slide-in-left");
 
+    // Then bring to normal position
     setTimeout(() => {
-      carouselImg.classList.remove("fade-in");
-      carouselOverlay.classList.remove("fade-in");
-    }, 600);
-  }, 350);
+      carouselImg.classList.remove("slide-in-right", "slide-in-left");
+      carouselImg.classList.add("slide-in");
+      carouselOverlay.classList.remove("slide-in-right", "slide-in-left");
+      carouselOverlay.classList.add("slide-in");
+    }, 60);
+
+    // Clean up after animation
+    setTimeout(() => {
+      carouselImg.classList.remove("slide-in");
+      carouselOverlay.classList.remove("slide-in");
+    }, 650);
+  }, 280);
 }
 
 // Next/Prev controls
-if (arrowLeft) arrowLeft.onclick = () => showSlide(currentSlide - 1);
-if (arrowRight) arrowRight.onclick = () => showSlide(currentSlide + 1);
+if (arrowLeft) arrowLeft.onclick = () => showSlide(currentSlide - 1, "left");
+if (arrowRight) arrowRight.onclick = () => showSlide(currentSlide + 1, "right");
 
 // Initial render
 showSlide(currentSlide);
@@ -105,12 +125,31 @@ carouselCard.addEventListener('touchend', e => {
 
 function handleGesture() {
   if (touchEndX < touchStartX - 40) {  // swipe left
-    showSlide(currentSlide + 1);
+    showSlide(currentSlide + 1, "right");
   }
   if (touchEndX > touchStartX + 40) {  // swipe right
-    showSlide(currentSlide - 1);
+    showSlide(currentSlide - 1, "left");
   }
 }
+
+/** --- AUTOPLAY (LOOPING) --- **/
+let carouselInterval;
+
+function startCarouselAutoplay() {
+  clearInterval(carouselInterval);
+  carouselInterval = setInterval(() => {
+    showSlide(currentSlide + 1, "right");
+  }, 4000);
+}
+
+// Pause on mouse hover/focus for accessibility
+carouselCard.addEventListener("mouseenter", () => clearInterval(carouselInterval));
+carouselCard.addEventListener("mouseleave", startCarouselAutoplay);
+carouselCard.addEventListener("focusin", () => clearInterval(carouselInterval));
+carouselCard.addEventListener("focusout", startCarouselAutoplay);
+
+// Start autoplay when page loads
+startCarouselAutoplay();
 
 /** === NAVBAR SCROLLSPY === **/
 const navLinks = document.querySelectorAll(".nav-link");
@@ -138,7 +177,7 @@ const menuToggle = document.getElementById("menuToggle");
 const offcanvasNav = document.getElementById("offcanvasNav");
 const navBackdrop = document.getElementById("navBackdrop");
 const closeNav = document.getElementById("closeNav");
-const navLinksMobile = offcanvasNav.querySelectorAll(".nav-link");
+const navLinksMobile = offcanvasNav ? offcanvasNav.querySelectorAll(".nav-link") : [];
 
 if (menuToggle) {
   menuToggle.onclick = function() {
@@ -168,7 +207,7 @@ function closeOffcanvas() {
 
 // Keyboard a11y: ESC closes menu
 window.addEventListener("keydown", e => {
-  if (e.key === "Escape" && offcanvasNav.classList.contains("open")) {
+  if (e.key === "Escape" && offcanvasNav && offcanvasNav.classList.contains("open")) {
     closeOffcanvas();
   }
 });
@@ -202,4 +241,74 @@ allNavLinks.forEach(link => {
   link.addEventListener("click", function() {
     setTimeout(updateMobileSectionTitle, 350); // Wait for scroll
   });
+});
+
+
+// team modal
+
+// --- Team Modal Logic ---
+
+// Get modal DOM elements
+const modal = document.getElementById('teamModal');
+const modalBackdrop = document.getElementById('teamModalBackdrop');
+const modalClose = document.getElementById('teamModalClose');
+const modalImg = document.getElementById('modalImg');
+const modalName = document.getElementById('modalName');
+const modalTitle = document.getElementById('modalTitle');
+const modalDesc = document.getElementById('modalDesc');
+
+/**
+ * Opens the team member modal and fills with the selected member's data.
+ * @param {HTMLElement} member - The team member element clicked
+ */
+function openTeamModal(member) {
+  // Show modal and backdrop
+  modal.classList.add('show');
+  modalBackdrop.classList.add('show');
+  // Fill modal content from data attributes
+  modalImg.src = member.dataset.img;
+  modalImg.alt = member.dataset.name + ' - ' + member.dataset.role;
+  modalName.textContent = member.dataset.name;
+  modalTitle.textContent = member.dataset.title;
+  modalDesc.textContent = member.dataset.desc;
+  modal.setAttribute('aria-hidden', 'false');
+  modalBackdrop.setAttribute('aria-hidden', 'false');
+  // Set focus to close button for accessibility
+  modalClose.focus();
+}
+
+/**
+ * Closes the team member modal and backdrop
+ */
+function closeTeamModal() {
+  modal.classList.remove('show');
+  modalBackdrop.classList.remove('show');
+  modal.setAttribute('aria-hidden', 'true');
+  modalBackdrop.setAttribute('aria-hidden', 'true');
+}
+
+// Attach open event to all team members
+document.querySelectorAll('.team-member').forEach(member => {
+  // Mouse click opens modal
+  member.addEventListener('click', function() {
+    openTeamModal(member);
+  });
+  // Keyboard Enter/Space opens modal
+  member.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openTeamModal(member);
+    }
+  });
+});
+
+// Attach close events
+modalClose.addEventListener('click', closeTeamModal);             // Close button
+modalBackdrop.addEventListener('click', closeTeamModal);          // Backdrop click
+
+// ESC key closes modal if open
+window.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && modal.classList.contains('show')) {
+    closeTeamModal();
+  }
 });

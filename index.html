@@ -1,57 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bringing Healthcare to Africa</title>
-  <meta name="description" content="EMR platform: Bringing healthcare to Africa. Book appointments, access prescriptions, and more." />
-  <link rel="icon" href="img/favicon.ico" />
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#e5fff6" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Erica+One&family=Lexend+Deca:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Saira:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bringing Healthcare to Africa</title>
+    <meta
+      name="description"
+      content="EMR platform: Bringing healthcare to Africa. Book appointments, access prescriptions, and more."
+    />
+    <link rel="icon" href="img/favicon.ico" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#e5fff6" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Erica+One&family=Lexend+Deca:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Saira:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Mobile Header -->
+    <header class="header-container mobile-header" aria-label="Site header">
+      <!-- Sticky logo for mobile -->
 
-  
-  <!-- Mobile Header -->
-  <header class="header-container mobile-header" aria-label="Site header">
-     <!-- Sticky logo for mobile -->
-
-    <div class="header-bg">
+      <div class="header-bg">
         <!-- <div class="sticky-mobile-logo">
   <img src="img/logo.png" alt="Healthcare Africa Logo" class="mobile-logo-img" />
 </div> -->
- <img src="img/logo.png" alt="Healthcare Africa Logo" class="logo" />
+        <img src="img/logo.png" alt="Healthcare Africa Logo" class="logo" />
         <span class="mobile-section-title" id="mobileSectionTitle">Home</span>
-     
-      <button class="hamburger" id="menuToggle" aria-label="Open navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-    <nav class="offcanvas" id="offcanvasNav" aria-label="Mobile Navigation">
-      <button class="close" id="closeNav" aria-label="Close navigation">&times;</button>
-      <ul>
-        <li><a href="#home" class="nav-link active">Home</a></li>
-        <li><a href="#about" class="nav-link">About us</a></li>
-        <li><a href="#how" class="nav-link">How we work</a></li>
-        <li><a href="#where" class="nav-link">Where we work</a></li>
-        <li><a href="#partners" class="nav-link">Our partners</a></li>
-        <li><a href="#partnership" class="nav-link">Partnership/M&A</a></li>
-      </ul>
-    </nav>
-    <div class="offcanvas-backdrop" id="navBackdrop" tabindex="-1" aria-hidden="true"></div>
-  </header>
 
-  <!-- Desktop Header -->
-  <header class="header-container desktop-header lexend-deca" aria-label="Site header">
-    <div class="header-bg-desktop">
-      <img src="img/logo.png" alt="Healthcare Africa Logo" class="logo" />
-      <nav aria-label="Main Navigation">
+        <button class="hamburger" id="menuToggle" aria-label="Open navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <nav class="offcanvas" id="offcanvasNav" aria-label="Mobile Navigation">
+        <button class="close" id="closeNav" aria-label="Close navigation">
+          &times;
+        </button>
         <ul>
           <li><a href="#home" class="nav-link active">Home</a></li>
           <li><a href="#about" class="nav-link">About us</a></li>
@@ -61,90 +50,335 @@
           <li><a href="#partnership" class="nav-link">Partnership/M&A</a></li>
         </ul>
       </nav>
-    </div>
-  </header>
+      <div
+        class="offcanvas-backdrop"
+        id="navBackdrop"
+        tabindex="-1"
+        aria-hidden="true"
+      ></div>
+    </header>
 
-  <!-- Main Content -->
-  <main id="home">
-    <section class="carousel-section" aria-label="Hero Banner Carousel">
-      <div class="carousel-card">
-        <div class="slider-container" id="sliderContainer">
-          <img src="img/banner1.jpg" alt="Healthcare Banner 1" class="carousel-img" id="carouselImg" />
-          <div class="img-overlay" id="carouselOverlay"></div>
-          <button class="carousel-arrow left" id="arrowLeft" aria-label="Previous Slide">&#8592;</button>
-          <button class="carousel-arrow right" id="arrowRight" aria-label="Next Slide">&#8594;</button>
-          <div class="carousel-overlay">
-            <h1 class="anton-regular">Bringing Healthcare to Africa</h1>
-            <div class="info-chip">
-              <span class="info-icon" aria-hidden="true">i</span>
-              <span>Improvement modern tech no technology</span>
+    <!-- Desktop Header -->
+    <header
+      class="header-container desktop-header lexend-deca"
+      aria-label="Site header"
+    >
+      <div class="header-bg-desktop">
+        <img src="img/logo.png" alt="Healthcare Africa Logo" class="logo" />
+        <nav aria-label="Main Navigation" class="lexend-deca">
+          <ul>
+            <li class="lexend-deca">
+              <a href="#home" class="nav-link active">Home</a>
+            </li>
+            <li class="lexend-deca">
+              <a href="#about" class="nav-link">About us</a>
+            </li>
+            <li><a href="#how" class="nav-link">How we work</a></li>
+            <li><a href="#where" class="nav-link">Where we work</a></li>
+            <li><a href="#partners" class="nav-link">Our partners</a></li>
+            <li><a href="#partnership" class="nav-link">Partnership/M&A</a></li>
+            <li><a href="#team" class="nav-link">Our Team</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="home">
+      <section class="carousel-section" aria-label="Hero Banner Carousel">
+        <div class="carousel-card">
+          <div class="slider-container" id="sliderContainer">
+            <img
+              src="img/banner1.jpg"
+              alt="Healthcare Banner 1"
+              class="carousel-img"
+              id="carouselImg"
+            />
+            <div class="img-overlay" id="carouselOverlay"></div>
+            <!-- <button
+              class="carousel-arrow left"
+              id="arrowLeft"
+              aria-label="Previous Slide"
+            >
+              &#8592;
+            </button>
+            <button
+              class="carousel-arrow right"
+              id="arrowRight"
+              aria-label="Next Slide"
+            >
+              &#8594;
+            </button> -->
+            <div class="carousel-overlay">
+              <h1 class="anton-regular">Bringing Healthcare to Africa</h1>
+              <div class="info-chip">
+                <span class="info-icon" aria-hidden="true">i</span>
+                <span>Improvement modern tech no technology</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="carousel-dots-bg" id="dotsBg">
-        <div class="carousel-dots" id="carouselDots"></div>
-      </div>
-    </section>
-    <!-- Add section anchors for scroll spy demo -->
-    <section id="about" class="page-section" tabindex="-1" aria-label="About us">
-        <section class="about-section" >
-  <div class="about-container">
-    <div class="about-image-group">
-      <div class="about-img-main">
-        <img src="img/banner3.jpg" alt="Team member at desk" />
-      </div>
-      <div class="about-img-small">
-        <img src="img/banner3.jpg" alt="Team member at desk" />
-      </div>
-    </div>
-    <div class="about-content">
-      <h2>
-        About <span class="about-green">US</span>
-      </h2>
-      <p>
-        Pharmerci contributes to improve healthcare across Africa by sourcing, in-licensing, manufacturing, representing, and distributing high-quality products and information across the continent. Pharmerci distributes products on the continent through its sister company Nouvel.
-      </p>
-     
-      <a class="about-btn" href="#">Learn More</a>
-    </div>
-  </div>
-</section>
+        <div class="carousel-dots-bg" id="dotsBg">
+          <div class="carousel-dots" id="carouselDots"></div>
+        </div>
 
-    </section>
-    <section class="page-section" tabindex="-1" aria-label="How we work">
+        <!--all three -->
+      </section>
+
+      <!-- Add section anchors for scroll spy demo -->
+      <section
+        id="about"
+        class="page-section"
+        tabindex="-1"
+        aria-label="About us"
+      >
+        <section class="about-section">
+          <div class="about-container">
+            <div class="about-image-group">
+              <div class="about-img-main">
+                <img src="img/banner3.jpg" alt="Team member at desk" />
+              </div>
+              <div class="about-img-small">
+                <img src="img/banner3.jpg" alt="Team member at desk" />
+              </div>
+            </div>
+            <div class="about-content">
+              <h2 class="anton-regular">
+                About <span class="about-green">US</span>
+              </h2>
+              <p class="lexend-deca">
+                Pharmerci contributes to improve healthcare across Africa by
+                sourcing, in-licensing, manufacturing, representing, and
+                distributing high-quality products and information across the
+                continent. Pharmerci distributes products on the continent
+                through its sister company Nouvel.
+              </p>
+
+              <a class="about-btn" href="#">Learn More</a>
+            </div>
+          </div>
+        </section>
+      </section>
+      <section class="page-section" tabindex="-1" aria-label="How we work">
         <section class="how-section" id="how">
-  <div class="how-container">
-    <h2 class="how-title">How we work</h2>
-    <div class="how-group">
-      <h3 class="how-subtitle">DISTRIBUTION</h3>
-      <p>
-        Pharmerci contributes to improve healthcare across Africa by sourcing, in-licensing, manufacturing, representing, and distributing high-quality products and information across the continent. Pharmerci distributes products on the continent through its sister company Nouvel.
-      </p>
-    </div>
-    <div class="how-group">
-      <h3 class="how-subtitle">IN-LICENCING AND REPRESENTATION</h3>
-      <p>
-        Pharmerci contributes to improve healthcare across Africa by sourcing, in-licensing, manufacturing, representing, and distributing high-quality products and information across the continent. Pharmerci distributes products on the continent through its sister company Nouvel.
-      </p>
-    </div>
-    <a class="how-btn" href="#">See All</a>
-  </div>
-</section>
+          <div class="how-container">
+            <h2 class="how-title">How we work</h2>
+            <div class="how-group">
+              <h3 class="how-subtitle anton-regular">DISTRIBUTION</h3>
+              <p class="lexend-deca">
+                Looking for a trusted partner or wondering if your product is a
+                fit for Africa? Our expertise is sourcing the best products for
+                the markets. Private label and network building. Our in-depth
+                knowledge of the markets and its network of local importers and
+                distributors ensure your brand is the best solution for the
+                right demand. We evaluate local needs, local supply chains,
+                regulations and policies, changing expectations, values and
+                constraints in the market to offer the best supply chain
+                possibility for each product.
+              </p>
+            </div>
+            <div class="how-group">
+              <h3 class="how-subtitle anton-regular">
+                IN-LICENCING AND REPRESENTATION
+              </h3>
+              <p class="lexend-deca">
+                Despite seemingly many similarities across African countries,
+                the various nations have distinctly different local market
+                conditions and dynamics. We take pride in our great relationship
+                with some national authorities, healthcare professionals,
+                wholesalers, diverse private organizations in the healthcare
+                space and pharmacy chains. Our strength is the business
+                experience, category competence and local expertise to succeed
+                in each country.
+              </p>
+            </div>
+            <a class="how-btn" href="#">See All</a>
+          </div>
+        </section>
+      </section>
+      <section class="page-section" tabindex="-1" aria-label="Where we work">
+        <section class="where-section" id="where">
+          <div class="where-container">
+            <div class="where-globe-group">
+              <!-- Map pin overlay -->
+              <div class="where-pin">
+                <img src="img/pin.png" alt="Africa location" />
+                <div class="where-locations">
+                  <div class="where-div">
+                    <span class="where-dot"></span>
+                    <span class="anton-regular">Cameroon</span>
+                  </div>
+                  <br />
+                  <div class="where-div">
+                    <span class="where-dot"></span>
+                    <span class="anton-regular">Nigerian</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Spinning globe + spinning text -->
+              <div class="where-globe-spin">
+                <img
+                  src="img/whereglobe.png"
+                  alt="Globe"
+                  class="where-globe-img"
+                />
+                <div class="where-spin-text">
+                  <span>WHERE WE <span class="where-green">WORK</span></span>
+                </div>
+              </div>
+            </div>
+            <p class="where-desc lexend-deca">
+              Pharmerci contributes to improve healthcare across Africa by
+              sourcing, in-licensing, manufacturing, representing, and
+              distributing high-quality products and information across the
+              continent. Pharmerci distributes products on the continent through
+              its sister company Nouvel.
+            </p>
+          </div>
+        </section>
+      </section>
+      <!-- all three -->
+      <section
+        id="partners"
+        class="page-section"
+        tabindex="-1"
+        aria-label="Our partners"
+      ></section>
+      <section class="page-section" tabindex="-1" aria-label="Partnership/M&A">
+        <section class="partnership-section" id="partnership">
+          <div class="partnership-container">
+            <h2 class="partnership-title anton-regular">Partnership/M&amp;A</h2>
+            <div class="partnership-highlight anton-regular">
+              DO YOU HAVE A PRODUCT PORTFOLIO OR BUSINESS TO
+            </div>
+            <div class="partnership-highlight anton-regular">
+              SELL OR DIVEST?
+            </div>
+            <p class="partnership-desc lexend-deca">
+              We have a strategic goal to increase the number and value of
+              products under our control. Specifically, we are looking to
+              acquire specialty pharma and OTC product portfolios and companies
+              that would fit our core categories like, obesity, cardiology,
+              gastroenterology, medical nutrition, infection/antibiotics, wound
+              care and pain management.
+            </p>
+          </div>
+        </section>
+      </section>
 
-    </section>
-    <section id="where" class="page-section" tabindex="-1" aria-label="Where we work"></section>
-    <section id="partners" class="page-section" tabindex="-1" aria-label="Our partners"></section>
-    <section id="partnership" class="page-section" tabindex="-1" aria-label="Partnership/M&A"></section>
-  </main>
-  <script src="script.js"></script>
-  <script>
-    // Service worker registration (PWA support)
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('sw.js');
-      });
-    }
-  </script>
-</body>
+      <section
+        class="team-section page-section"
+        id="team"
+        tabindex="-1"
+        
+      >
+        <div class="team-container">
+          <h2 class="team-title anton-regular">Our Team</h2>
+          <h3 class="team-subtitle anton-regular">Executive Members</h3>
+          <div class="team-list">
+            <!-- Repeat this .team-member for each profile -->
+            <div
+              class="team-member"
+              tabindex="0"
+              role="button"
+              aria-label="View Dr. Bbana Profile"
+              data-name="Dr "
+              data-role="Pharmacist"
+              data-title="Sub Title"
+              data-img="img/mengang.png"
+              data-desc="prototest"
+            >
+              <div class="team-img-border">
+                <img src="img/mengang.png" alt="Dr Bbana - Pharmacist" />
+              </div>
+              <span class="team-role lexend-deca">Dr. Gerard Mengang</span>
+            </div>
+            <!-- You can duplicate this .team-member for other team members with different data- attributes -->
+            <div
+              class="team-member"
+              tabindex="0"
+              role="button"
+              aria-label="View Dr. Bbana Profile"
+              data-name="Dr "
+              data-role="Pharmacist"
+              data-title="Sub Title"
+              data-img="img/arteh.png"
+              data-desc="proto test"
+            >
+              <div class="team-img-border">
+                <img src="img/arteh.png" alt="Dr Bbana - Pharmacist" />
+              </div>
+              <span class="team-role lexend-deca">Ateh Atabong</span>
+            </div>
+            <div
+              class="team-member"
+              tabindex="0"
+              role="button"
+              aria-label="View Dr. Bbana Profile"
+              data-name="Dr"
+              data-role="Pharmacist"
+              data-title="Sub Title"
+              data-img="img/drccl.png"
+              data-desc="proto test"
+            >
+              <div class="team-img-border">
+                <img src="img/drccl.png" alt="Dr Bbana - Pharmacist" />
+              </div>
+              <span class="team-role lexend-deca">Dr. Joelle M. Mengang</span>
+            </div>
+          </div>
+          <a class="team-btn" href="#">Learn more</a>
+        </div>
+
+        <!-- MODAL -->
+        <div
+          class="team-modal-backdrop"
+          id="teamModalBackdrop"
+          tabindex="-1"
+        ></div>
+        <div
+          class="team-modal"
+          id="teamModal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modalName"
+          aria-describedby="modalDesc"
+        >
+          <button
+            class="team-modal-close"
+            id="teamModalClose"
+            aria-label="Close"
+          >
+            &times;
+          </button>
+          <div class="team-modal-content">
+            <div class="team-modal-img">
+              <img src="img/banner3 (6).jpg" alt="" id="modalImg" />
+            </div>
+            <div class="team-modal-divider"></div>
+            <div class="team-modal-details">
+              <h3 id="modalName">DR</h3>
+              <h4 id="modalTitle" class="modal-title-blue">Title</h4>
+              <p id="modalDesc">
+                Pharmerci contributes to improve healthcare across Africa by
+                sourcing, in-licensing, manufacturing, representing, and
+                distributing high-quality products and information across the
+                continent. Pharmerci distributes products on the continent
+                through its sister company Nouvel.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="script.js"></script>
+    <script>
+      // Service worker registration (PWA support)
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("sw.js");
+        });
+      }
+    </script>
+  </body>
 </html>
