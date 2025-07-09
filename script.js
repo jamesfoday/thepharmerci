@@ -1,17 +1,11 @@
 /**
- * Carousel, navbar scrollspy, and mobile nav logic for Healthcare Africa
+ * Carousel, navbar scrollspy, modal logic, and mobile nav for Healthcare Africa
  * @file script.js
+ * @author
  */
 
-/* Carousel Logic */
+/* ------------------- Carousel Logic ------------------- */
 
-const slides = [
-  { img: "img/banner1.jpg", alt: "Healthcare Banner 1" },
-  { img: "img/banner2.jpg", alt: "Healthcare Banner 2" },
-  { img: "img/banner3.jpg", alt: "Healthcare Banner 3" }
-];
-
-let currentSlide = 0;
 const carouselImg = document.getElementById("carouselImg");
 const carouselOverlay = document.getElementById("carouselOverlay");
 const arrowLeft = document.getElementById("arrowLeft");
@@ -19,112 +13,127 @@ const arrowRight = document.getElementById("arrowRight");
 const carouselDots = document.getElementById("carouselDots");
 const carouselCard = document.getElementById("sliderContainer");
 
-function buildDots() {
-  carouselDots.innerHTML = "";
-  slides.forEach((slide, idx) => {
-    const dot = document.createElement("button");
-    dot.className = "carousel-dot" + (idx === currentSlide ? " active" : "");
-    dot.type = "button";
-    dot.setAttribute("aria-label", `Go to slide ${idx + 1}`);
-    dot.setAttribute("tabindex", "0");
-    dot.onclick = () => showSlide(idx, idx > currentSlide ? "right" : "left");
-    dot.onkeydown = e => {
-      if (e.key === "Enter" || e.key === " ") showSlide(idx, idx > currentSlide ? "right" : "left");
-    };
-    carouselDots.appendChild(dot);
-  });
-}
+const slides = [
+  { img: "img/banner1.jpg", alt: "Healthcare Banner 1" },
+  { img: "img/banner2.jpg", alt: "Healthcare Banner 2" },
+  { img: "img/banner3.jpg", alt: "Healthcare Banner 3" }
+];
+let currentSlide = 0;
 
-function showSlide(idx, direction) {
-  if (idx < 0) idx = slides.length - 1;
-  if (idx >= slides.length) idx = 0;
-  carouselImg.classList.remove("slide-in", "slide-out-left", "slide-in-right", "slide-in-left", "slide-out-right");
-  carouselOverlay.classList.remove("slide-in", "slide-out-left", "slide-in-right", "slide-in-left", "slide-out-right");
-  let slideDir = direction;
-  if (!slideDir) {
-    slideDir = (idx > currentSlide || (currentSlide === slides.length - 1 && idx === 0)) ? "right" : "left";
+// Only run carousel logic if elements exist (for home page)
+if (carouselImg && carouselOverlay && carouselCard && carouselDots) {
+  /**
+   * Builds the dot navigation for the carousel and updates the active state.
+   */
+  function buildDots() {
+    carouselDots.innerHTML = "";
+    slides.forEach((slide, idx) => {
+      const dot = document.createElement("button");
+      dot.className = "carousel-dot" + (idx === currentSlide ? " active" : "");
+      dot.type = "button";
+      dot.setAttribute("aria-label", `Go to slide ${idx + 1}`);
+      dot.setAttribute("tabindex", "0");
+      dot.onclick = () => showSlide(idx, idx > currentSlide ? "right" : "left");
+      dot.onkeydown = e => {
+        if (e.key === "Enter" || e.key === " ") showSlide(idx, idx > currentSlide ? "right" : "left");
+      };
+      carouselDots.appendChild(dot);
+    });
   }
-  carouselImg.classList.add(slideDir === "right" ? "slide-out-left" : "slide-out-right");
-  carouselOverlay.classList.add(slideDir === "right" ? "slide-out-left" : "slide-out-right");
 
-  setTimeout(() => {
-    currentSlide = idx;
-    carouselImg.src = slides[currentSlide].img;
-    carouselImg.alt = slides[currentSlide].alt;
-    buildDots();
-    carouselImg.classList.remove("slide-out-left", "slide-out-right");
-    carouselOverlay.classList.remove("slide-out-left", "slide-out-right");
-    carouselImg.classList.add(slideDir === "right" ? "slide-in-right" : "slide-in-left");
-    carouselOverlay.classList.add(slideDir === "right" ? "slide-in-right" : "slide-in-left");
+  /**
+   * Shows the carousel slide at the given index, with sliding transition.
+   * @param {number} idx
+   * @param {string} [direction] - "left" or "right"
+   */
+  function showSlide(idx, direction) {
+    if (idx < 0) idx = slides.length - 1;
+    if (idx >= slides.length) idx = 0;
+    carouselImg.classList.remove("slide-in", "slide-out-left", "slide-in-right", "slide-in-left", "slide-out-right");
+    carouselOverlay.classList.remove("slide-in", "slide-out-left", "slide-in-right", "slide-in-left", "slide-out-right");
+    let slideDir = direction;
+    if (!slideDir) {
+      slideDir = (idx > currentSlide || (currentSlide === slides.length - 1 && idx === 0)) ? "right" : "left";
+    }
+    carouselImg.classList.add(slideDir === "right" ? "slide-out-left" : "slide-out-right");
+    carouselOverlay.classList.add(slideDir === "right" ? "slide-out-left" : "slide-out-right");
+
     setTimeout(() => {
-      carouselImg.classList.remove("slide-in-right", "slide-in-left");
-      carouselImg.classList.add("slide-in");
-      carouselOverlay.classList.remove("slide-in-right", "slide-in-left");
-      carouselOverlay.classList.add("slide-in");
-    }, 60);
-    setTimeout(() => {
-      carouselImg.classList.remove("slide-in");
-      carouselOverlay.classList.remove("slide-in");
-    }, 650);
-  }, 280);
-}
-
-if (arrowLeft) arrowLeft.onclick = () => showSlide(currentSlide - 1, "left");
-if (arrowRight) arrowRight.onclick = () => showSlide(currentSlide + 1, "right");
-showSlide(currentSlide);
-
-function toggleArrows() {
-  if (window.innerWidth <= 1024) {
-    if (arrowLeft) arrowLeft.style.display = "none";
-    if (arrowRight) arrowRight.style.display = "none";
-  } else {
-    if (arrowLeft) arrowLeft.style.display = "";
-    if (arrowRight) arrowRight.style.display = "";
+      currentSlide = idx;
+      carouselImg.src = slides[currentSlide].img;
+      carouselImg.alt = slides[currentSlide].alt;
+      buildDots();
+      carouselImg.classList.remove("slide-out-left", "slide-out-right");
+      carouselOverlay.classList.remove("slide-out-left", "slide-out-right");
+      carouselImg.classList.add(slideDir === "right" ? "slide-in-right" : "slide-in-left");
+      carouselOverlay.classList.add(slideDir === "right" ? "slide-in-right" : "slide-in-left");
+      setTimeout(() => {
+        carouselImg.classList.remove("slide-in-right", "slide-in-left");
+        carouselImg.classList.add("slide-in");
+        carouselOverlay.classList.remove("slide-in-right", "slide-in-left");
+        carouselOverlay.classList.add("slide-in");
+      }, 60);
+      setTimeout(() => {
+        carouselImg.classList.remove("slide-in");
+        carouselOverlay.classList.remove("slide-in");
+      }, 650);
+    }, 280);
   }
-}
-window.addEventListener("resize", toggleArrows);
-toggleArrows();
 
-/* Swipe Support for Mobile */
-let touchStartX = 0;
-let touchEndX = 0;
+  if (arrowLeft) arrowLeft.onclick = () => showSlide(currentSlide - 1, "left");
+  if (arrowRight) arrowRight.onclick = () => showSlide(currentSlide + 1, "right");
 
-carouselCard.addEventListener('touchstart', e => {
-  touchStartX = e.changedTouches[0].screenX;
-}, {passive:true});
-carouselCard.addEventListener('touchend', e => {
-  touchEndX = e.changedTouches[0].screenX;
-  handleGesture();
-}, {passive:true});
+  showSlide(currentSlide);
 
-function handleGesture() {
-  if (touchEndX < touchStartX - 40) {
-    showSlide(currentSlide + 1, "right");
+  // Hide arrows on mobile
+  function toggleArrows() {
+    if (window.innerWidth <= 1024) {
+      if (arrowLeft) arrowLeft.style.display = "none";
+      if (arrowRight) arrowRight.style.display = "none";
+    } else {
+      if (arrowLeft) arrowLeft.style.display = "";
+      if (arrowRight) arrowRight.style.display = "";
+    }
   }
-  if (touchEndX > touchStartX + 40) {
-    showSlide(currentSlide - 1, "left");
+  window.addEventListener("resize", toggleArrows);
+  toggleArrows();
+
+  // Touch/Swipe support
+  let touchStartX = 0;
+  let touchEndX = 0;
+  carouselCard.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, {passive:true});
+  carouselCard.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    if (touchEndX < touchStartX - 40) showSlide(currentSlide + 1, "right");
+    if (touchEndX > touchStartX + 40) showSlide(currentSlide - 1, "left");
+  }, {passive:true});
+
+  // Autoplay Loop
+  let carouselInterval;
+  function startCarouselAutoplay() {
+    clearInterval(carouselInterval);
+    carouselInterval = setInterval(() => {
+      showSlide(currentSlide + 1, "right");
+    }, 4000);
   }
+  carouselCard.addEventListener("mouseenter", () => clearInterval(carouselInterval));
+  carouselCard.addEventListener("mouseleave", startCarouselAutoplay);
+  carouselCard.addEventListener("focusin", () => clearInterval(carouselInterval));
+  carouselCard.addEventListener("focusout", startCarouselAutoplay);
+  startCarouselAutoplay();
 }
 
-/* Autoplay Loop */
-let carouselInterval;
-function startCarouselAutoplay() {
-  clearInterval(carouselInterval);
-  carouselInterval = setInterval(() => {
-    showSlide(currentSlide + 1, "right");
-  }, 4000);
-}
-carouselCard.addEventListener("mouseenter", () => clearInterval(carouselInterval));
-carouselCard.addEventListener("mouseleave", startCarouselAutoplay);
-carouselCard.addEventListener("focusin", () => clearInterval(carouselInterval));
-carouselCard.addEventListener("focusout", startCarouselAutoplay);
-startCarouselAutoplay();
+/* ------------------- Navbar Scrollspy ------------------- */
 
-/* Navbar Scrollspy (now includes team and contact) */
 const navLinks = document.querySelectorAll(".nav-link");
 const sectionIds = ["home", "about", "how", "where", "partners", "partnership", "team", "contact"];
 const sections = sectionIds.map(id => document.getElementById(id));
 
+/**
+ * Updates active class on navbar links based on scroll position.
+ */
 function updateNavActive() {
   let index = 0;
   sections.forEach((section, i) => {
@@ -138,7 +147,8 @@ function updateNavActive() {
 window.addEventListener("scroll", updateNavActive, { passive: true });
 updateNavActive();
 
-/* Mobile Navigation / Offcanvas */
+/* ------------------- Mobile Navigation / Offcanvas ------------------- */
+
 const menuToggle = document.getElementById("menuToggle");
 const offcanvasNav = document.getElementById("offcanvasNav");
 const navBackdrop = document.getElementById("navBackdrop");
@@ -175,7 +185,7 @@ window.addEventListener("keydown", e => {
   }
 });
 
-/* Mobile Sticky Section Title */
+/* ------------------- Mobile Sticky Section Title ------------------- */
 const mobileSectionTitle = document.getElementById('mobileSectionTitle');
 function updateMobileSectionTitle() {
   if (!mobileSectionTitle) return;
@@ -199,7 +209,7 @@ allNavLinks.forEach(link => {
   });
 });
 
-/* Team Modal */
+/* ------------------- Team Modal ------------------- */
 const modal = document.getElementById('teamModal');
 const modalBackdrop = document.getElementById('teamModalBackdrop');
 const modalClose = document.getElementById('teamModalClose');
@@ -212,8 +222,7 @@ const modalBtnIcon = document.getElementById('modalBtnIcon');
 const modalBtnText = document.getElementById('modalBtnText');
 
 /**
- * Opens the team member modal and fills in details.
- * Sets button label, icon, link, and accessibility label.
+ * Opens the team member modal and fills in profile data.
  * @param {HTMLElement} member - The team member DOM node triggering the modal.
  */
 function openTeamModal(member) {
@@ -229,7 +238,6 @@ function openTeamModal(member) {
   if (member.dataset.link) {
     modalBtn.href = member.dataset.link;
     modalBtn.style.display = '';
-    // Use icon or default "person"
     if (member.dataset.icon) {
       modalBtnIcon.textContent = member.dataset.icon;
     } else {
@@ -246,12 +254,17 @@ function openTeamModal(member) {
   modalClose.focus();
 }
 
+/**
+ * Closes the team member modal and backdrop.
+ */
 function closeTeamModal() {
   modal.classList.remove('show');
   modalBackdrop.classList.remove('show');
   modal.setAttribute('aria-hidden', 'true');
   modalBackdrop.setAttribute('aria-hidden', 'true');
 }
+
+// Modal event listeners
 document.querySelectorAll('.team-member').forEach(member => {
   member.addEventListener('click', function() {
     openTeamModal(member);
@@ -263,10 +276,10 @@ document.querySelectorAll('.team-member').forEach(member => {
     }
   });
 });
-modalClose.addEventListener('click', closeTeamModal);
-modalBackdrop.addEventListener('click', closeTeamModal);
+if (modalClose) modalClose.addEventListener('click', closeTeamModal);
+if (modalBackdrop) modalBackdrop.addEventListener('click', closeTeamModal);
 window.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape' && modal.classList.contains('show')) {
+  if (e.key === 'Escape' && modal && modal.classList.contains('show')) {
     closeTeamModal();
   }
 });
