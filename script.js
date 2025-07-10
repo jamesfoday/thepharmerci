@@ -283,3 +283,20 @@ window.addEventListener('keydown', function(e) {
     closeTeamModal();
   }
 });
+
+
+  // Show splash ONLY if not visited before in this session
+document.addEventListener("DOMContentLoaded", function() {
+  const overlay = document.getElementById('logo-animation-overlay');
+  if (!overlay) return;
+  // Only show animation ONCE per page reload, not on navigation.
+  if (sessionStorage.getItem('logoAnimated')) {
+    overlay.style.display = "none";
+    return;
+  }
+  sessionStorage.setItem('logoAnimated', "1");
+  setTimeout(() => {
+    overlay.style.opacity = "0";
+    setTimeout(() => overlay.style.display = "none", 480);
+  }, 1750); // Animation total duration
+});
