@@ -379,3 +379,70 @@ body, html {
 }
 
 
+
+.policy-main {
+      max-width: 980px;
+      background: #fff;
+      margin: 100px auto 0 auto;
+      padding: 48px 22px 44px 22px;
+      border-radius: 28px;
+      box-shadow: 0 6px 40px rgba(49, 188, 134, 0.06);
+      font-family: 'Lexend Deca', 'Montserrat', Arial, sans-serif;
+      color: #232323;
+    }
+    .policy-main h1, .policy-main h2 {
+      color: #29bc86;
+      font-family: 'Lexend Deca', Arial, sans-serif;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .policy-main h1 {
+      font-size: 2.2rem;
+      margin-top: 0;
+    }
+    .policy-main h2 {
+      font-size: 1.44rem;
+      margin-top: 2.5em;
+    }
+    .policy-main ul, .policy-main ol {
+      margin-left: 1.6em;
+      line-height: 1.85;
+    }
+    .policy-toc {
+      background: #e7faf2;
+      border-radius: 12px;
+      padding: 14px 20px;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 10px rgba(49, 188, 134, 0.08);
+    }
+    .policy-toc ul {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      font-size: 1.09rem;
+    }
+    .policy-toc ul li {
+      margin: 6px 0;
+    }
+    .policy-toc a {
+      color: #217a56;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+    .policy-main a {
+      color: #29bc86;
+      text-decoration: underline;
+    }
+    @media (max-width: 700px) {
+      .policy-main {
+        max-width: 98vw;
+        padding: 18px 5vw 30px 5vw;
+        margin-top: 54px;
+      }
+      .policy-main h1 {
+        font-size: 1.35rem;
+      }
+      .policy-main h2 {
+        font-size: 1.08rem;
+      }
+    }
