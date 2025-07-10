@@ -2680,7 +2680,7 @@ height: auto;
 }
 
 .stomp-logo {
-  width: 250px;
+  width: 2200x;
   height: 250px;
   /* border: #ffffff solid 15px; */
   border-radius: 50%;
@@ -2730,4 +2730,19 @@ height: auto;
     width: 100vw;
     box-shadow: 0 0 0 transparent;
   }
+}
+
+@media (max-width: 600px) {
+.stomp-logo {
+  width: 190px;
+  height: 190px;
+  /* border: #ffffff solid 15px; */
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.5) translateY(-60px);
+  animation: logo-stomp 0.8s cubic-bezier(.4,2,.6,1) 0.2s forwards;
+   box-shadow: 0 6px 50px 0 rgba(0, 0, 0, 0.137), 0 1.5px 18px rgba(44,192,118,0.10);
+  transition: box-shadow 0.4s, transform 0.5s cubic-bezier(.25,1.5,.5,1.05);
+}
+
 }
